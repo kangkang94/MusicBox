@@ -16,17 +16,6 @@ import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.os.IBinder;
 
-/**
- * Description: <br/>
- * 网站: <a href="http://www.crazyit.org">疯狂Java联盟</a> <br/>
- * Copyright (C), 2001-2014, Yeeku.H.Lee <br/>
- * This program is protected by copyright laws. <br/>
- * Program Name: <br/>
- * Date:
- * 
- * @author Yeeku.H.Lee kongyeeku@163.com
- * @version 1.0
- */
 public class MusicService extends Service implements Runnable {
 	MyReceiver serviceReceiver;
 	AssetManager am;
@@ -65,12 +54,13 @@ public class MusicService extends Service implements Runnable {
 				if (current >= 3) {
 					current = 0;
 				}
+
 				// 发送广播通知Activity更改文本框
 				Intent sendIntent = new Intent(MusicBox.UPDATE_ACTION);
 				sendIntent.putExtra("current", current);
 				// 发送广播 ，将被Activity组件中的BroadcastReceiver接收到
 				sendBroadcast(sendIntent);
-				// 准备、并播放音乐
+
 				prepareAndPlay(musics[current]);
 			}
 		});
